@@ -57,55 +57,67 @@ const colorClasses = {
 };
 
 const ServicesSection = () => {
+  const scrollToContact = () => {
+    const element = document.getElementById('kontak');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="layanan" className="py-20 bg-muted/50">
-      <div className="container">
+    <section id="layanan" className="py-12 sm:py-16 md:py-20 bg-muted/50">
+      <div className="container px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-16">
+          <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             Layanan Kami
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Program & <span className="text-gradient">Kegiatan</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
             Berbagai program dan kegiatan yang kami laksanakan untuk 
             melayani masyarakat dalam penanggulangan bencana dan kesejahteraan sosial.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-6 rounded-2xl bg-card border shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="group p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-card border shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${colorClasses[service.color]}`}>
-                <service.icon className="h-7 w-7" />
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 md:mb-5 transition-all duration-300 ${colorClasses[service.color]}`}>
+                <service.icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
                 {service.description}
               </p>
-              <button className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all">
+              <button className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-primary hover:gap-2 sm:hover:gap-3 transition-all touch-manipulation">
                 Selengkapnya
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
               </button>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">
+        <div className="text-center mt-8 sm:mt-10 md:mt-12">
+          <p className="text-muted-foreground text-sm sm:text-base mb-3 sm:mb-4">
             Ingin berkontribusi dalam kegiatan kami?
           </p>
-          <Button variant="hero" size="lg">
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="text-sm sm:text-base"
+            onClick={scrollToContact}
+          >
             Daftar Sebagai Relawan
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
         </div>
       </div>
