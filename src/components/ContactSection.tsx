@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -10,13 +11,22 @@ const ContactSection = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    alert("Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.");
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast.success("Pesan Anda telah terkirim!", {
+      description: "Kami akan segera menghubungi Anda.",
+      icon: <CheckCircle className="h-5 w-5 text-accent" />,
+    });
+    
     setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -24,61 +34,61 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="kontak" className="py-20 bg-background">
-      <div className="container">
+    <section id="kontak" className="py-12 sm:py-16 md:py-20 bg-background">
+      <div className="container px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-16">
+          <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             Hubungi Kami
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Kontak & <span className="text-gradient">Lokasi</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
             Jangan ragu untuk menghubungi kami. Kami siap membantu Anda.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="p-6 rounded-2xl bg-card border shadow-sm">
-              <h3 className="text-xl font-bold text-foreground mb-6">Informasi Kontak</h3>
+          <div className="space-y-4 sm:space-y-6 md:space-y-8">
+            <div className="p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-card border shadow-sm">
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6">Informasi Kontak</h3>
               
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-primary/10">
-                    <MapPin className="h-6 w-6 text-primary" />
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-primary/10 flex-shrink-0">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Alamat</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground">Alamat</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Jl. Slamet Riyadi No. 1<br />
                       Cianjur, Jawa Barat 43211
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-destructive/10">
-                    <Phone className="h-6 w-6 text-destructive" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-destructive/10 flex-shrink-0">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-destructive" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Telepon</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground">Telepon</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Hotline: <a href="tel:119" className="text-primary font-semibold">119</a><br />
                       Kantor: <a href="tel:+622632270000" className="hover:text-primary">(0263) 227-0000</a>
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-accent/10">
-                    <Mail className="h-6 w-6 text-accent" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-accent/10 flex-shrink-0">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Email</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground">Email</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       <a href="mailto:tagana@cianjurkab.go.id" className="hover:text-primary">
                         tagana@cianjurkab.go.id
                       </a>
@@ -86,13 +96,13 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-warning/20">
-                    <Clock className="h-6 w-6 text-foreground" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-warning/20 flex-shrink-0">
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-foreground" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Jam Operasional</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground">Jam Operasional</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Hotline Darurat: 24 Jam<br />
                       Kantor: Senin - Jumat, 08:00 - 16:00
                     </p>
@@ -102,7 +112,7 @@ const ContactSection = () => {
             </div>
 
             {/* Map */}
-            <div className="h-64 rounded-2xl overflow-hidden border">
+            <div className="h-48 sm:h-56 md:h-64 rounded-xl sm:rounded-2xl overflow-hidden border">
               <iframe
                 title="Lokasi TAGANA Cianjur"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63385.86764970877!2d107.09684254863279!3d-6.8177669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68b1f60c5c4f97%3A0x301e8f1fc28c8f0!2sCianjur%2C%20Cianjur%20Regency%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1705123456789!5m2!1sen!2sid"
@@ -117,16 +127,16 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="p-8 rounded-2xl bg-card border shadow-sm">
-            <h3 className="text-xl font-bold text-foreground mb-2">Kirim Pesan</h3>
-            <p className="text-muted-foreground mb-6">
+          <div className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card border shadow-sm">
+            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 sm:mb-2">Kirim Pesan</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
               Isi formulir di bawah untuk menghubungi kami atau mengajukan pertanyaan.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-5">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">
                     Nama Lengkap *
                   </label>
                   <input
@@ -136,12 +146,12 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                     placeholder="Masukkan nama"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">
                     No. Telepon *
                   </label>
                   <input
@@ -151,14 +161,14 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                     placeholder="08xxxxxxxxxx"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">
                   Email *
                 </label>
                 <input
@@ -168,13 +178,13 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                   placeholder="email@contoh.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="subject" className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">
                   Subjek
                 </label>
                 <select
@@ -182,7 +192,7 @@ const ContactSection = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 >
                   <option value="">Pilih subjek</option>
                   <option value="volunteer">Pendaftaran Relawan</option>
@@ -194,7 +204,7 @@ const ContactSection = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">
                   Pesan *
                 </label>
                 <textarea
@@ -203,15 +213,21 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
+                  rows={4}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Tulis pesan Anda di sini..."
                 />
               </div>
 
-              <Button type="submit" variant="hero" size="lg" className="w-full">
-                Kirim Pesan
-                <Send className="h-5 w-5" />
+              <Button 
+                type="submit" 
+                variant="hero" 
+                size="lg" 
+                className="w-full text-sm sm:text-base"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Mengirim..." : "Kirim Pesan"}
+                <Send className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </form>
           </div>

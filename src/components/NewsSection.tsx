@@ -36,60 +36,61 @@ const categoryColors: Record<string, string> = {
 
 const NewsSection = () => {
   return (
-    <section id="berita" className="py-20 bg-background">
-      <div className="container">
+    <section id="berita" className="py-12 sm:py-16 md:py-20 bg-background">
+      <div className="container px-4 sm:px-6">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 md:mb-12">
           <div>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+            <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
               Berita & Kegiatan
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               Update <span className="text-gradient">Terkini</span>
             </h2>
           </div>
-          <Button variant="outline" className="w-fit">
+          <Button variant="outline" className="w-fit text-sm touch-manipulation">
             Lihat Semua Berita
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
         </div>
 
         {/* News Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {newsItems.map((news) => (
             <article
               key={news.id}
-              className="group rounded-2xl bg-card border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+              className="group rounded-xl sm:rounded-2xl bg-card border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden">
                 <img
                   src={news.image}
                   alt={news.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColors[news.category]}`}>
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                  <span className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${categoryColors[news.category]}`}>
                     {news.category}
                   </span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                  <Calendar className="h-4 w-4" />
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
+                  <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{news.date}</span>
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground mb-1.5 sm:mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                   {news.title}
                 </h3>
-                <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                <p className="text-muted-foreground text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4">
                   {news.excerpt}
                 </p>
-                <button className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all">
+                <button className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-primary hover:gap-2 sm:hover:gap-3 transition-all touch-manipulation">
                   Baca Selengkapnya
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
                 </button>
               </div>
             </article>
