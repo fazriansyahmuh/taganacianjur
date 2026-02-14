@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
+import logoTagana from "@/assets/logo-tagana.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,14 +19,13 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 lg:col-span-1">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                <span className="text-primary-foreground font-bold text-lg sm:text-xl">T</span>
-              </div>
+              <img src={logoTagana} alt="Logo TAGANA" className="w-10 h-10 sm:w-12 sm:h-12 object-contain flex-shrink-0" />
               <div>
                 <span className="font-bold text-lg sm:text-xl">TAGANA</span>
                 <p className="text-[10px] sm:text-xs opacity-70">CIANJUR</p>
               </div>
             </div>
+            <p className="text-xs sm:text-sm italic text-primary mb-2">"We are the first to help and care"</p>
             <p className="text-secondary-foreground/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
               Taruna Siaga Bencana Kabupaten Cianjur. Garda terdepan dalam 
               penanggulangan bencana dan kesejahteraan sosial masyarakat.
