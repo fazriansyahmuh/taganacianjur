@@ -1,6 +1,6 @@
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "Beranda", href: "#beranda" },
@@ -13,6 +13,13 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     setIsOpen(false);
@@ -37,7 +44,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className="glass-card border-b">
+      <nav className={`glass-card border-b transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
         <div className="container flex items-center justify-between h-14 sm:h-16 md:h-20 px-3 sm:px-6">
           {/* Logo */}
           <a href="#beranda" onClick={(e) => { e.preventDefault(); scrollToSection('beranda'); }} className="flex items-center gap-2 sm:gap-3">
@@ -67,12 +74,13 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <Button 
-              variant="hero" 
+              variant="emergency" 
               size="default"
-              className="text-sm"
+              className="text-sm gap-2"
               onClick={() => scrollToSection('kontak')}
             >
-              Gabung Relawan
+              <AlertTriangle className="h-4 w-4" />
+              Lapor Bencana
             </Button>
           </div>
 
@@ -101,11 +109,12 @@ const Navbar = () => {
                 </a>
               ))}
               <Button 
-                variant="hero" 
-                className="w-full mt-3 sm:mt-4 text-sm sm:text-base"
+                variant="emergency" 
+                className="w-full mt-3 sm:mt-4 text-sm sm:text-base gap-2"
                 onClick={() => scrollToSection('kontak')}
               >
-                Gabung Relawan
+                <AlertTriangle className="h-4 w-4" />
+                Lapor Bencana
               </Button>
             </div>
           </div>

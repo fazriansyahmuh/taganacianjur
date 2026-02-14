@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Heart, Users } from "lucide-react";
+import { ArrowRight, Shield, Heart, Users, Phone } from "lucide-react";
 import heroImage from "@/assets/hero-tagana.jpg";
 
 const HeroSection = () => {
@@ -12,7 +12,7 @@ const HeroSection = () => {
 
   return (
     <section id="beranda" className="relative min-h-screen flex items-center pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
-      {/* Background Image - optimized loading */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
@@ -52,9 +52,9 @@ const HeroSection = () => {
               variant="hero" 
               size="lg"
               className="text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3"
-              onClick={() => scrollToSection('kontak')}
+              onClick={() => scrollToSection('berita')}
             >
-              Gabung Menjadi Relawan
+              Lihat Berita Terkini
               <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
             <Button 
@@ -65,6 +65,17 @@ const HeroSection = () => {
             >
               Pelajari Lebih Lanjut
             </Button>
+          </div>
+
+          {/* Emergency Call */}
+          <div className="mt-4 sm:mt-6 animate-slide-up" style={{ animationDelay: "0.25s" }}>
+            <a 
+              href="tel:119" 
+              className="inline-flex items-center gap-2 text-xs sm:text-sm text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span>Darurat? Hubungi <strong className="text-primary">119</strong></span>
+            </a>
           </div>
 
           {/* Stats */}
@@ -94,7 +105,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - hidden on mobile */}
+      {/* Scroll Indicator */}
       <div className="hidden sm:block absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-float">
         <div className="w-5 h-8 md:w-6 md:h-10 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-1.5 md:p-2">
           <div className="w-1 h-2 md:w-1.5 md:h-3 rounded-full bg-primary-foreground/50 animate-bounce" />
