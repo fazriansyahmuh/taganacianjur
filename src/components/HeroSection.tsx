@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Heart, Users, Phone } from "lucide-react";
 import heroImage from "@/assets/hero-tagana.jpg";
+import logoTagana from "@/assets/logo-tagana.png";
 
 const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
@@ -26,10 +27,13 @@ const HeroSection = () => {
       {/* Content */}
       <div className="container relative z-10 px-4 sm:px-6">
         <div className="max-w-3xl">
+          {/* Logo */}
+          <img src={logoTagana} alt="Logo TAGANA" className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain mb-4 sm:mb-5 animate-fade-in" />
+
           {/* Badge */}
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-4 sm:mb-6 animate-fade-in">
             <Shield className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
-            <span className="text-xs sm:text-sm font-medium text-primary-foreground">Taruna Siaga Bencana</span>
+            <span className="text-xs sm:text-sm font-medium text-primary-foreground">Taruna Siaga Bencana Cianjur</span>
           </div>
 
           {/* Heading */}
@@ -39,6 +43,11 @@ const HeroSection = () => {
             <br className="hidden sm:block" />
             Melayani Masyarakat
           </h1>
+
+          {/* Motto */}
+          <p className="text-xs sm:text-sm md:text-base text-primary font-semibold italic mb-2 animate-slide-up" style={{ animationDelay: "0.05s" }}>
+            "We are the first to help and care"
+          </p>
 
           {/* Description */}
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-primary-foreground/80 mb-6 sm:mb-8 max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>

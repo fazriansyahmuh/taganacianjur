@@ -108,7 +108,7 @@ const ServicesSection = () => {
         {/* CTA */}
         <div className="text-center mt-8 sm:mt-10 md:mt-12">
           <p className="text-muted-foreground text-sm sm:text-base mb-3 sm:mb-4">
-            Ingin berkontribusi dalam kegiatan kami?
+            Butuh bantuan atau ingin berkoordinasi?
           </p>
           <Button 
             variant="hero" 
@@ -116,7 +116,7 @@ const ServicesSection = () => {
             className="text-sm sm:text-base"
             onClick={scrollToContact}
           >
-            Daftar Sebagai Relawan
+            Hubungi Kami
             <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
         </div>
