@@ -1,6 +1,5 @@
-import { Crown, Star, Users, Briefcase, Award, ChevronDown, ChevronUp } from "lucide-react";
+import { Crown, Star, Users, Briefcase, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import logoTagana from "@/assets/logo-tagana.png";
 
 interface OrgMember {
   name: string;
@@ -21,16 +20,10 @@ const orgMembers: OrgMember[] = [
   { name: "Neng Tati Sumiati", position: "Koordinator Humas", role: "Koordinator Hubungan Masyarakat", icon: Users, tier: 3 },
 ];
 
-const tierColors: Record<number, string> = {
-  1: "from-primary to-primary/80 text-primary-foreground",
-  2: "from-secondary to-secondary/80 text-secondary-foreground",
-  3: "from-accent to-accent/80 text-accent-foreground",
-};
-
-const tierBorders: Record<number, string> = {
-  1: "border-primary/30 shadow-primary/10",
-  2: "border-secondary/30 shadow-secondary/10",
-  3: "border-accent/30 shadow-accent/10",
+const tierGradients: Record<number, string> = {
+  1: "from-primary to-accent",
+  2: "from-secondary to-secondary/80",
+  3: "from-muted-foreground/20 to-muted-foreground/10",
 };
 
 const OrganizationSection = () => {
@@ -38,7 +31,6 @@ const OrganizationSection = () => {
   const ketua = orgMembers.filter(m => m.tier === 1);
   const wakil = orgMembers.filter(m => m.tier === 2);
   const koordinator = orgMembers.filter(m => m.tier === 3);
-
   const displayKoordinator = expanded ? koordinator : koordinator.slice(0, 2);
 
   return (
@@ -57,48 +49,74 @@ const OrganizationSection = () => {
           </p>
         </div>
 
-        {/* Logo & Motto */}
-        <div className="flex flex-col items-center mb-10 sm:mb-14">
-          <img 
-            src={logoTagana} 
-            alt="Logo TAGANA" 
-            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain mb-3 sm:mb-4"
-          />
-          <p className="text-sm sm:text-base md:text-lg font-semibold text-primary italic text-center">
+        {/* Motto */}
+        <div className="text-center mb-10 sm:mb-14">
+          <p className="text-sm sm:text-base md:text-lg font-semibold text-primary italic">
             "We are the first to help and care"
           </p>
         </div>
 
-        {/* Org Chart */}
-        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+        {/* Org Chart - Modern Card Layout */}
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
           {/* Tier 1 - Ketua */}
-          <div className="flex justify-center">
-            {ketua.map((member, i) => (
-              <OrgCard key={i} member={member} featured />
-            ))}
-          </div>
-
-          {/* Connector line */}
-          <div className="flex justify-center">
-            <div className="w-px h-6 sm:h-8 bg-border" />
-          </div>
+          {ketua.map((member, i) => (
+            <div key={i} className="relative mx-auto max-w-md">
+              <div className="bg-card rounded-2xl border-2 border-primary/30 p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-4">
+                  <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${tierGradients[1]} flex items-center justify-center shadow-lg`}>
+                    <Crown className="h-7 w-7 sm:h-8 sm:w-8 text-primary-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-primary text-primary-foreground mb-1">
+                      {member.position}
+                    </span>
+                    <h4 className="font-bold text-base sm:text-lg text-foreground">{member.name}</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{member.role}</p>
+                  </div>
+                </div>
+              </div>
+              {/* Connector */}
+              <div className="flex justify-center">
+                <div className="w-px h-6 sm:h-8 bg-border" />
+              </div>
+            </div>
+          ))}
 
           {/* Tier 2 */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             {wakil.map((member, i) => (
-              <OrgCard key={i} member={member} />
+              <div key={i} className="bg-card rounded-xl border border-secondary/20 p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-secondary/40 transition-all duration-300">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br ${tierGradients[2]} flex items-center justify-center`}>
+                    <member.icon className="h-5 w-5 text-secondary-foreground" />
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-secondary/10 text-secondary">
+                    {member.position}
+                  </span>
+                </div>
+                <h4 className="font-bold text-sm sm:text-base text-foreground">{member.name}</h4>
+                <p className="text-xs text-muted-foreground mt-0.5">{member.role}</p>
+              </div>
             ))}
           </div>
 
-          {/* Connector line */}
+          {/* Connector */}
           <div className="flex justify-center">
-            <div className="w-px h-6 sm:h-8 bg-border" />
+            <div className="w-px h-4 sm:h-6 bg-border" />
           </div>
 
           {/* Tier 3 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {displayKoordinator.map((member, i) => (
-              <OrgCard key={i} member={member} />
+              <div key={i} className="bg-card rounded-xl border p-4 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                </div>
+                <div className="min-w-0">
+                  <h4 className="font-semibold text-sm text-foreground truncate">{member.name}</h4>
+                  <p className="text-xs text-muted-foreground truncate">{member.role}</p>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -118,22 +136,5 @@ const OrganizationSection = () => {
     </section>
   );
 };
-
-const OrgCard = ({ member, featured }: { member: OrgMember; featured?: boolean }) => (
-  <div className={`relative group p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-card border-2 shadow-md hover:shadow-lg transition-all duration-300 ${tierBorders[member.tier]} ${featured ? 'max-w-sm mx-auto w-full' : ''}`}>
-    <div className={`inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${tierColors[member.tier]} mb-3 shadow-md`}>
-      <member.icon className="h-5 w-5 sm:h-6 sm:w-6" />
-    </div>
-    <div className={`absolute top-3 right-3 sm:top-4 sm:right-4 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${tierColors[member.tier]}`}>
-      {member.position}
-    </div>
-    <h4 className={`font-bold text-foreground ${featured ? 'text-base sm:text-lg' : 'text-sm sm:text-base'}`}>
-      {member.name}
-    </h4>
-    <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-      {member.role}
-    </p>
-  </div>
-);
 
 export default OrganizationSection;

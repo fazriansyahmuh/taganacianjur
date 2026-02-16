@@ -1,5 +1,4 @@
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
-import logoTagana from "@/assets/logo-tagana.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,7 +18,6 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 lg:col-span-1">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <img src={logoTagana} alt="Logo TAGANA" className="w-10 h-10 sm:w-12 sm:h-12 object-contain flex-shrink-0" />
               <div>
                 <span className="font-bold text-lg sm:text-xl">TAGANA</span>
                 <p className="text-[10px] sm:text-xs opacity-70">CIANJUR</p>
@@ -143,8 +141,8 @@ const Footer = () => {
             &copy; {currentYear} TAGANA Kabupaten Cianjur. Hak Cipta Dilindungi.
           </p>
           <div className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-xs md:text-sm text-secondary-foreground/70">
+            <a href="/login" className="hover:text-primary transition-colors touch-manipulation">Admin Login</a>
             <a href="#" className="hover:text-primary transition-colors touch-manipulation">Kebijakan Privasi</a>
-            <a href="#" className="hover:text-primary transition-colors touch-manipulation">Syarat & Ketentuan</a>
           </div>
         </div>
       </div>
