@@ -1,4 +1,3 @@
-import logoTagana from "@/assets/logo-tagana.png";
 import { Shield, Heart, Zap } from "lucide-react";
 
 const values = [
@@ -16,11 +15,9 @@ const MottoSection = () => {
       
       <div className="container relative z-10 px-4 sm:px-6">
         <div className="flex flex-col items-center text-center">
-          <img 
-            src={logoTagana} 
-            alt="Logo TAGANA" 
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain mb-6 sm:mb-8 animate-float"
-          />
+          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center mb-6 sm:mb-8">
+            <Shield className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary" />
+          </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-3 sm:mb-4 leading-tight">
             "We are the first to{" "}
             <span className="text-primary">help</span> and{" "}

@@ -1,13 +1,14 @@
 import { Phone, Menu, X, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import logoTagana from "@/assets/logo-tagana.png";
+import { useNavigate } from "react-router-dom";
 
 const navLinks = [
   { label: "Beranda", href: "#beranda" },
   { label: "Tentang", href: "#tentang" },
   { label: "Layanan", href: "#layanan" },
   { label: "Organisasi", href: "#organisasi" },
+  { label: "Anggota", href: "#anggota" },
   { label: "Berita", href: "#berita" },
   { label: "Galeri", href: "#galeri" },
   { label: "Kontak", href: "#kontak" },
@@ -50,7 +51,6 @@ const Navbar = () => {
         <div className="container flex items-center justify-between h-14 sm:h-16 md:h-20 px-3 sm:px-6">
           {/* Logo */}
           <a href="#beranda" onClick={(e) => { e.preventDefault(); scrollToSection('beranda'); }} className="flex items-center gap-2 sm:gap-3">
-            <img src={logoTagana} alt="Logo TAGANA" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain flex-shrink-0" />
             <div className="flex flex-col">
               <span className="font-bold text-base sm:text-lg md:text-xl text-foreground">TAGANA</span>
               <span className="text-[10px] sm:text-xs text-muted-foreground -mt-0.5 sm:-mt-1">CIANJUR</span>
